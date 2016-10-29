@@ -29,10 +29,13 @@ public:
 	void setValor(int,int,int);
 	void setValor(char*, char*, int);
 	Vertice getVertice(int);
+	Vertice getVertice(string);
 	void setVertice(int va, Vertice vert);
 	void mostrarVecVerts();
 	void mostrarMatAdy();
-	bool cargarArchivo();
+	vector<Vertice*> getAdyacentesA(Vertice);
+	vector<Vertice*> getIncidentesEn(Vertice);
+	float getPageRank(Vertice);
 	~GrafoMatriz();
 };
 

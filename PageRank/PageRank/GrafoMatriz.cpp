@@ -168,6 +168,10 @@ Vertice GrafoMatriz::getVertice(int va) {
 	else return verts[va];
 }
 
+Vertice GrafoMatriz::getVertice(string nom) {
+	return Vertice();
+}
+
 void GrafoMatriz::setVertice(int va, Vertice vert) {
 	if (va < 0 || va >= numVerts)
 		throw "Vertice no existe";
@@ -199,3 +203,34 @@ void GrafoMatriz::mostrarMatAdy() {
 		cout << "\n";
 	}
 }
+
+// A es adayacente con X si A->X existe.
+// NO IMPLICA que X es adayacente con A (X->A).
+vector<Vertice*> GrafoMatriz::getAdyacentesA(Vertice V) {
+	vector<Vertice*> vecAdyacentes;
+	for (int i = 0; i < maxVerts; i++) 
+		if (adyacente(V.getNombre(), verts[i].getNombre()))
+			vecAdyacentes.push_back(&verts[i]);
+	return vecAdyacentes;
+}
+
+// X es incidente en A si X->A existe.
+vector<Vertice*> GrafoMatriz::getIncidentesEn(Vertice V) {
+	vector<Vertice*> vecIncidentes;
+	for (int i = 0; i < maxVerts; i++)
+		if (adyacente(verts[i].getNombre(), V.getNombre()))
+			vecIncidentes.push_back(&verts[i]);
+	return vecIncidentes;
+}
+/*
+float GrafoMatriz::getPageRank(Vertice V) {
+	float pageRankeOfV = 0;
+	float d = 0.85;
+	vector<Vertice*> linksToV = this->getIncidentesEn(V);
+	vector<Vertice*> C = this->getAdyacentesA(V);
+	if (C.size() != 0 || linksToV.size() != 0)
+		pageRankeOfV += (1 - d) + d * (getPageRank(*linksToV[0]) / C.size());
+	return pageRankeOfV;
+	
+}
+*/
