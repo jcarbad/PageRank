@@ -1,20 +1,13 @@
 #include "stdafx.h"
-#include "GrafoMatriz.h"
+#include "PageRanker.h"
 using namespace std;
 
 int main() {
-	GrafoMatriz *grafo = new GrafoMatriz("matAd.mat");
-	grafo->mostrarMatAdy();
-	cout << endl;
-	/*
-	vector<Vertice*> vecIncid = grafo->getIncidentesEn(grafo->getVertice(grafo->numVertice("B")));
-	for (int i = 0; i < vecIncid.size(); i++)
-		cout << vecIncid[i]->getNombre() << "-> ";
-	
-	cout << endl;
-	cout.precision(10);
-	cout << "\t PageRank de A:  " << fixed << grafo->getPageRank(grafo->getVertice(grafo->numVertice("A")));
-	*/
+	GrafoMatriz *G = new GrafoMatriz("matAd.mat");
+	PageRanker *PR = new PageRanker(G);
+	PR->inicializaPageRanks();
+	PR->calculaPageRanks();
+	PR->mostrarGrafo();
 	cin.get();
     return 0;
 }

@@ -10,12 +10,14 @@ Vertice::Vertice(string x)
 {
 	nombre = x;
 	numVertice = -1;
+	pageRank = 0;
 }
 
 Vertice::Vertice(string x, int num)
 {
 	nombre = x;
 	numVertice = num;
+	pageRank = 0;
 }
 
 string Vertice::getNombre() {
@@ -24,6 +26,21 @@ string Vertice::getNombre() {
 
 int Vertice::getNumVertice() {
 	return numVertice;
+}
+
+void Vertice::setNombre(string nom)
+{
+	nombre = nom;
+}
+
+void Vertice::setPageRank(float pr)
+{
+	pageRank = pr;
+}
+
+float Vertice::miPageRank()
+{
+	return pageRank;
 }
 
 bool Vertice::esIgualA(Vertice V) {

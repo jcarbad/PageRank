@@ -30,12 +30,12 @@ public:
 	void setValor(char*, char*, int);
 	Vertice getVertice(int);
 	Vertice getVertice(string);
-	void setVertice(int va, Vertice vert);
+	void setVertice(int, Vertice);
 	void mostrarVecVerts();
 	void mostrarMatAdy();
 	vector<Vertice*> getAdyacentesA(Vertice);
 	vector<Vertice*> getIncidentesEn(Vertice);
-	float getPageRank(Vertice);
+	vector<Vertice*> getVerts();
 	~GrafoMatriz();
 };
 

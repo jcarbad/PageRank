@@ -26,14 +26,14 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 	vector<int> enteros;
 	ifstream readFile;
 	readFile.open(inputFile, ios::in);
-	// -------- carga cada fila como string
+	// -------- Carga renglón por renglón
 	while (!readFile.eof()) {
 		getline(readFile, data);
 		res.push_back(data);
 		//cout << "DATA leida:  " << data << "\n";
 	}
 	readFile.close();
-	// ----- Reconoce 1s o 0s y agrega a enteros;
+	// ----- Reconoce 1s o 0s y convierte a enteros
 	vector<string>::iterator vk;
 	for (vk = res.begin(); vk != res.end(); vk++) {
 		string actual = *vk;
@@ -105,7 +105,7 @@ int GrafoMatriz::numVertice(string v) {
 	return (i < numVerts) ? i : -1;
 }
 
-void GrafoMatriz::nuevoArco(string a, string b){
+void GrafoMatriz::nuevoArco(string a, string b) {
 	int va, vb;
 	va = numVertice(a);
 	vb = numVertice(b);
@@ -142,7 +142,7 @@ int GrafoMatriz::getValor(string a, string b) {
 	return matAd[va][vb];
 }
 
-int GrafoMatriz::getValor(int va, int vb){
+int GrafoMatriz::getValor(int va, int vb) {
 	if (va < 0 || va < 0 || va >= numVerts || vb >= numVerts)
 		throw "Vertice no existe";
 	return matAd[va][vb];
@@ -169,7 +169,7 @@ Vertice GrafoMatriz::getVertice(int va) {
 }
 
 Vertice GrafoMatriz::getVertice(string nom) {
-	return Vertice();
+	return getVertice(numVertice(nom));
 }
 
 void GrafoMatriz::setVertice(int va, Vertice vert) {
@@ -180,7 +180,8 @@ void GrafoMatriz::setVertice(int va, Vertice vert) {
 
 void GrafoMatriz::mostrarVecVerts() {
 	for (int i = 0; i < maxVerts; i++) {
-			cout << "V[" << i << "] = " << verts[i].getNombre() <<  "\n";
+		cout.precision(10);
+		cout << "V[" << i << "] = " << verts[i].getNombre() << " con PageRank: " << fixed << verts[i].miPageRank() << "\n";
 	}
 }
 
@@ -193,7 +194,7 @@ void GrafoMatriz::mostrarMatAdy() {
 			if (i == 0 && j == 0) {
 				cout << " ";
 				for (int i = 0; i < maxVerts; i++, letra++)
-					cout << " " << letra ;
+					cout << " " << letra;
 				cout << endl;
 			}
 			if (i == 0 && j == 0)
@@ -204,17 +205,17 @@ void GrafoMatriz::mostrarMatAdy() {
 	}
 }
 
-// A es adayacente con X si A->X existe.
-// NO IMPLICA que X es adayacente con A (X->A).
+//// A es adayacente con X si A->X existe.
+//// NO IMPLICA que X es adayacente con A (X->A).
 vector<Vertice*> GrafoMatriz::getAdyacentesA(Vertice V) {
 	vector<Vertice*> vecAdyacentes;
-	for (int i = 0; i < maxVerts; i++) 
+	for (int i = 0; i < maxVerts; i++)
 		if (adyacente(V.getNombre(), verts[i].getNombre()))
 			vecAdyacentes.push_back(&verts[i]);
 	return vecAdyacentes;
 }
 
-// X es incidente en A si X->A existe.
+//// X es incidente en A si X->A existe.
 vector<Vertice*> GrafoMatriz::getIncidentesEn(Vertice V) {
 	vector<Vertice*> vecIncidentes;
 	for (int i = 0; i < maxVerts; i++)
@@ -222,15 +223,13 @@ vector<Vertice*> GrafoMatriz::getIncidentesEn(Vertice V) {
 			vecIncidentes.push_back(&verts[i]);
 	return vecIncidentes;
 }
-/*
-float GrafoMatriz::getPageRank(Vertice V) {
-	float pageRankeOfV = 0;
-	float d = 0.85;
-	vector<Vertice*> linksToV = this->getIncidentesEn(V);
-	vector<Vertice*> C = this->getAdyacentesA(V);
-	if (C.size() != 0 || linksToV.size() != 0)
-		pageRankeOfV += (1 - d) + d * (getPageRank(*linksToV[0]) / C.size());
-	return pageRankeOfV;
+
+vector<Vertice*> GrafoMatriz::getVerts(){
+	vector<Vertice*> _verts;
+	for (int i = 0; i < maxVerts; i++)
+		_verts.push_back(&verts[i]);
+	return _verts;
 	
 }
-*/
+
+
