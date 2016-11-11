@@ -15,6 +15,7 @@ public:
 	void inicializaPageRanks();
 	void calculaPageRanks();
 	float getPageRank(Vertice*, float);
+	float getPageRank(Vertice*);
 	void mostrarGrafo();
 	~PageRanker();
 };

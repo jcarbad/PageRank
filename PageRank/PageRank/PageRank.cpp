@@ -8,6 +8,7 @@ int main() {
 	PR->inicializaPageRanks();
 	PR->calculaPageRanks();
 	PR->mostrarGrafo();
+	G->guardar("salida.txt");
 	cin.get();
     return 0;
 }

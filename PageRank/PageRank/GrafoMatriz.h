@@ -36,6 +36,8 @@ public:
 	vector<Vertice*> getAdyacentesA(Vertice);
 	vector<Vertice*> getIncidentesEn(Vertice);
 	vector<Vertice*> getVerts();
+	void guardar(string);
+	string prtoString();
 	~GrafoMatriz();
 };
 

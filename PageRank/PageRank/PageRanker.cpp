@@ -36,14 +36,14 @@ float PageRanker::getPageRank(Vertice *V, float acum){
 	vector<Vertice*> In = Grafo->getIncidentesEn(*V); // Todos los que apuntan a V.
 	if (In.size() == 0) {
 		acum = V->miPageRank();
-		V->setPageRank(acum);
+	//	V->setPageRank(acum);
 		return acum;
 	}
 	else {
 		for (int i = 0; i < In.size(); i++) {
 			if (fueVisitado(In[i])) {
 				acum = In[i]->miPageRank();
-				In[i]->setPageRank(acum);
+				// In[i]->setPageRank(acum);
 				return acum;
 			}
 			else {
@@ -60,6 +60,18 @@ float PageRanker::getPageRank(Vertice *V, float acum){
 	return acum;
 }
 
+float PageRanker::getPageRank(Vertice *V){
+	vector<Vertice*> In = Grafo->getIncidentesEn(*V); // Todos los que apuntan a V.
+	if(In.size() == 0){
+		return V->miPageRank();
+	}
+	else {
+		for (int i = 0; i < In.size(); i++) {
+			
+		}
+		
+	}
+}
 void PageRanker::mostrarGrafo() {
 	Grafo->mostrarMatAdy();
 	cout << endl;

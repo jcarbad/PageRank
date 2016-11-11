@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GrafoMatriz.h"
+#include <iomanip>
 
 typedef int *pint; // Para el dimensionamiento de la matriz.
 
@@ -75,6 +76,26 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 	}
 }
 
+
+void GrafoMatriz::guardar(string outputFile){
+	ofstream salida(outputFile);
+	char letra=65;
+	double value;
+	vector<Vertice*> V = getVerts();
+	vector<Vertice*>::iterator itVerts;
+	salida<<"PageRanks resultantes \n";
+	for (itVerts = V.begin(); itVerts != V.end(); itVerts++){
+		value = (*itVerts)->miPageRank();
+		salida<<letra;
+		salida<<" = ";
+		salida<<setprecision(10)<<value;
+		salida<<"\n";
+		letra++;
+	}
+
+	salida<<"Desarrollado por:\nJoan A. Carballo Badilla\nSergio I. Vargas Urena";
+	salida.close();
+}
 int GrafoMatriz::getNumVerts() {
 	return numVerts;
 }
@@ -205,7 +226,7 @@ void GrafoMatriz::mostrarMatAdy() {
 	}
 }
 
-//// A es adayacente con X si A->X existe.
+//// A es adyacente con X si A->X existe.
 //// NO IMPLICA que X es adayacente con A (X->A).
 vector<Vertice*> GrafoMatriz::getAdyacentesA(Vertice V) {
 	vector<Vertice*> vecAdyacentes;
@@ -229,7 +250,7 @@ vector<Vertice*> GrafoMatriz::getVerts(){
 	for (int i = 0; i < maxVerts; i++)
 		_verts.push_back(&verts[i]);
 	return _verts;
-	
+
 }
 
 
