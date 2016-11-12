@@ -1,0 +1,19 @@
+Generado:  12-11-2016 05:45:06
+
+PageRanks resultantes: 
+A = 0.5066620111
+B = 0.4196023047
+C = 0.4196023047
+D = 0.3507329822
+E = 0.2795454562
+F = 0.2795454562
+G = 0.2795454562
+H = 0.2795454562
+I = 0.2795454562
+J = 0.3181818128
+K = 0.3181818128
+
+
+Desarrollado por:
+Joan A. Carballo Badilla
+Sergio I. Vargas Urena

@@ -1,8 +1,8 @@
 #include  "GrafoMatriz.h"
 #include <list>
 
-#define D 0.85 // Damping Factor: Probabilidad de que el surfer utilice un link (arco).
-#define ND 0.15 // 1- D: Probabilidad de que suceda lo contrario, o sea, typear un URL.
+#define D 0.85f // Damping Factor: Probabilidad de que el surfer utilice un link (arco).
+#define ND 0.15f // 1- D: Probabilidad de que suceda lo contrario, o sea, typear un URL.
 
 class PageRanker {
 private:

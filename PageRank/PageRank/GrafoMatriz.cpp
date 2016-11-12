@@ -25,15 +25,19 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 	string data;
 	vector<string> res;
 	vector<int> enteros;
-	ifstream readFile;
-	readFile.open(inputFile, ios::in);
-	// -------- Carga renglón por renglón
-	while (!readFile.eof()) {
-		getline(readFile, data);
-		res.push_back(data);
-		//cout << "DATA leida:  " << data << "\n";
+	ifstream readFile(inputFile, ios::in);
+	if (readFile) {
+		cout << "Leyendo desde..." << inputFile << endl;
+		// -------- Carga renglón por renglón
+		while (!readFile.eof()) {
+			getline(readFile, data);
+			res.push_back(data);
+		}
+		readFile.close();
 	}
-	readFile.close();
+	else {
+		cout << "No se pudo leer el archivo  " << inputFile << endl;
+	}
 	// ----- Reconoce 1s o 0s y convierte a enteros
 	vector<string>::iterator vk;
 	for (vk = res.begin(); vk != res.end(); vk++) {
@@ -78,12 +82,24 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 
 
 void GrafoMatriz::guardar(string outputFile){
+	//----------------------------
+	time_t rawtime;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, 80, "%d-%m-%Y %I:%M:%S", timeinfo);
+	string fecha(buffer);
+	//----------------------------
 	ofstream salida(outputFile);
 	char letra=65;
 	double value;
 	vector<Vertice*> V = getVerts();
 	vector<Vertice*>::iterator itVerts;
-	salida<<"PageRanks resultantes \n";
+	salida << "Generado:  " << fecha << "\n";
+	salida<<"\nPageRanks resultantes: \n";
 	for (itVerts = V.begin(); itVerts != V.end(); itVerts++){
 		value = (*itVerts)->miPageRank();
 		salida<<letra;
@@ -93,8 +109,9 @@ void GrafoMatriz::guardar(string outputFile){
 		letra++;
 	}
 
-	salida<<"Desarrollado por:\nJoan A. Carballo Badilla\nSergio I. Vargas Urena";
+	salida<<"\n\nDesarrollado por:\nJoan A. Carballo Badilla\nSergio I. Vargas Urena";
 	salida.close();
+	cout << "Se genero archivo..." << outputFile << endl;
 }
 int GrafoMatriz::getNumVerts() {
 	return numVerts;

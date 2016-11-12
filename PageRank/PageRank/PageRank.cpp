@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "PageRanker.h"
+
 using namespace std;
 
 int main() {
-	GrafoMatriz *G = new GrafoMatriz("matAd.mat");
+	GrafoMatriz *G = new GrafoMatriz("Archivos/matAdyacencia.txt");
 	PageRanker *PR = new PageRanker(G);
-	PR->inicializaPageRanks();
 	PR->calculaPageRanks();
 	PR->mostrarGrafo();
-	G->guardar("salida.txt");
+	G->guardar("Archivos/salida.txt");
 	cin.get();
-    return 0;
+	return 0;
 }
 
