@@ -9,7 +9,7 @@ int main() {
 	PR->calculaPageRanks();
 	PR->mostrarGrafo();
 	G->guardar("Archivos/salida.txt");
-	cin.get();
+	system("Pause");
 	return 0;
 }
 

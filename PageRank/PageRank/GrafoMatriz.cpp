@@ -6,7 +6,7 @@ typedef int *pint; // Para el dimensionamiento de la matriz.
 
 GrafoMatriz::GrafoMatriz() {
 	maxVerts = 1;
-	GrafoMatriz(maxVerts);
+	GrafoMatriz::GrafoMatriz(maxVerts);
 }
 
 GrafoMatriz::GrafoMatriz(int mx) {
@@ -27,7 +27,7 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 	vector<int> enteros;
 	ifstream readFile(inputFile, ios::in);
 	if (readFile) {
-		cout << "Leyendo desde..." << inputFile << endl;
+		cout << "\n\tLeyendo desde...  " << inputFile << endl << endl;
 		// -------- Carga renglón por renglón
 		while (!readFile.eof()) {
 			getline(readFile, data);
@@ -42,7 +42,7 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 	vector<string>::iterator vk;
 	for (vk = res.begin(); vk != res.end(); vk++) {
 		string actual = *vk;
-		for (int i = 0; i < actual.length(); i++) {
+		for (unsigned int i = 0; i < actual.length(); i++) {
 			if ((int)actual.at(i) == 49) // ASCII para 1
 				enteros.push_back(1);
 			if ((int)actual.at(i) == 48) // ASCII para 0
@@ -62,7 +62,7 @@ GrafoMatriz::GrafoMatriz(string inputFile) {
 			matAd[i][j] = 0;
 	// ----- "Interpreta" los datos del archivo
 	char letra = 'A';
-	for (int i = 0; i < enteros.size(); i++) {
+	for (unsigned int i = 0; i < enteros.size(); i++) {
 		char fila = (char)(letra + i / res.size());
 		char columna = (char)(letra + (i % res.size()));
 		// Convierte chars en strings
@@ -111,7 +111,7 @@ void GrafoMatriz::guardar(string outputFile){
 
 	salida<<"\n\nDesarrollado por:\nJoan A. Carballo Badilla\nSergio I. Vargas Urena";
 	salida.close();
-	cout << "Se genero archivo..." << outputFile << endl;
+	cout << "\n\tSe genero archivo...  " << outputFile << endl << endl;
 }
 int GrafoMatriz::getNumVerts() {
 	return numVerts;
