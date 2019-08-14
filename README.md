@@ -1,10 +1,10 @@
 # *PageRank*
-## Proyecto II - Estructuras de Datos
-### II Ciclo, 2016
+##  PII - Estructuras de Datos
+### II - 2016
 
-Implementación en VS2012 del algoritmo PageRank utlizando métodos recursivos.
+C++ implementation of Google's PageRank algorithm for graphs navigation.
 
-_Integrantes:_
+_Members:_
 - Joan A. Carballo Badilla
 - Sergio I. Vargas Ureña
 
